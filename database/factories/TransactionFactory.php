@@ -20,6 +20,7 @@ class TransactionFactory extends Factory
             'type' => $this->faker->randomElement(['pemasukan', 'pengeluaran']),
             'amount' => $this->faker->numberBetween(50000, 5000000),
             'date' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
+            'kategori' => $this->faker->randomElement(['belanja', 'makanan','pendidikan'])
         ];
     }
 }
