@@ -13,7 +13,8 @@ class Transaction extends Model
     protected $fillable = [
         'date',
         'type',
-        'amount'
+        'amount',
+        'kategori'
     ];
 
     /**
