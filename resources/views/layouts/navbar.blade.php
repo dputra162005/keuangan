@@ -9,7 +9,7 @@
             <div class="dropdown-menu" id="dropdownmenu">
                 <a href="#">Profile</a>
                 <a href="#">Settings</a>
-                <a href="#">Logout</a>
+                <a href="{{ url('/logout') }}">Logout</a>
             </div>
         </div>
     </div>   

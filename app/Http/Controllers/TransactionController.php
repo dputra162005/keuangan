@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
     public function index() {
-        $user = User::with('transaction')->find(5);
-
+        // $user = User::with('transaction')->find(5);
+        $user = Auth::user();
+        
         $pemasukan = $user->transaction()
             ->where('type', 'pemasukan')
             ->get();
