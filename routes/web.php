@@ -110,4 +110,12 @@ Route::get('/transaction',[TransactionController::class,'index'])->name('transac
 Route::get('/transaction/detail/{id}',[TransactionController::class,'showDetail'])->name('transaction.detail');
 Route::get('/transaction/hasil',[TransactionController::class,'showHasil'])->name('transaction.hasil');
 Route::get('/transaction/create',[TransactionController::class,'create'])->name('transaction.create');
+
+
+//membuat fitur tambah transaction
+Route::post('/transaction/create',[TransactionController::class,'createTransaction'])->name('createTransaction.post');
+Route::delete('/transaction/delete/{id}',[TransactionController::class,'deleteTransaction'])->name('deleteTransaction');
+Route::get('/transaction/{id}',[TransactionController::class,'showTransaction'])->name('transaction.show');
+Route::put('/transaction/update/{id}',[TransactionController::class,'updateTransaction'])->name('Transaction.update');
+
 });
