@@ -27,6 +27,13 @@
   background-color: var(--bg);
 }
 
+button {
+  border: none;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--font-sans);
+}
+
 
 .navbar{
   display: flex;
