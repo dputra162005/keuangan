@@ -4,11 +4,13 @@ use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\FrofilController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -118,4 +120,17 @@ Route::delete('/transaction/delete/{id}',[TransactionController::class,'deleteTr
 Route::get('/transaction/{id}',[TransactionController::class,'showTransaction'])->name('transaction.show');
 Route::put('/transaction/update/{id}',[TransactionController::class,'updateTransaction'])->name('Transaction.update');
 
+
+
+//membuat profil
+Route::get('/profil',[FrofilController::class,'profil'])->name("profil");
+Route::post('/profil/edit',[FrofilController::class,'editProfil'])->name("profil.edit");
+
 });
+
+// Route::get('/nav_profil', function() {
+//     $user = user::with('image')->findOrFail(Auth::id());
+//         return view('layouts.navbar', [
+//             'user' => $user
+//     ]);
+// });

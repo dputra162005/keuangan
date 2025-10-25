@@ -169,14 +169,13 @@ function hapus() {
     }
 
     
-
-
-
 console.log("Popup tampil!");
 bar();
 modalTambah();
 hapus();
 tambahproduk();
+
+
 
 
 

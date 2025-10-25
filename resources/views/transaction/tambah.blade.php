@@ -3,7 +3,8 @@
 <section class="tambah-mobile">
     <div class="form-tambah">
         <h2>Tambah Transaksi</h2>
-        <form  action="">
+        <form  action="{{ url('/transaction/create') }}" method="POST" >
+            @csrf
             <div class="masukan-data">
                 <label for="jenis">Jenis Transaksi</label>
                 <select name="jenis" id="jenis">

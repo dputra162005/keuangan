@@ -5,9 +5,9 @@
     
     <div class="items">
         <div class="profile-dropdown">
-            <img class="profile-img" id="profile" src="https://i.pravatar.cc/300" alt="Profile Image">
+            <img class="profile-img" id="profile" src="{{ $authUser && $authUser->image ? asset('storage/' . $authUser->image->url) : asset('m/INTP.jpeg') }}" alt="Profile Image">
             <div class="dropdown-menu" id="dropdownmenu">
-                <a href="#">Profile</a>
+                <a href="{{ url('/profil') }}">Profile</a>
                 <a href="#">Settings</a>
                 <a href="{{ url('/logout') }}">Logout</a>
             </div>
