@@ -14,6 +14,7 @@
 @include('pop.pop')
 
 
+
 @yield('content')
 
 <script src="{{ asset('js/script.js') }}"></script>

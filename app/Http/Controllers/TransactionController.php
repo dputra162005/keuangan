@@ -12,6 +12,8 @@ class TransactionController extends Controller
     public function index() {
         // $user = User::with('transaction')->find(5);
         $user = Auth::user();
+
+        $user_img = User::with(['image','blog'])->findOrFail($user->id);
         
         $pemasukan = $user->transaction()
             ->where('type', 'pemasukan')
@@ -31,11 +33,14 @@ class TransactionController extends Controller
             'total_pengeluaran' => $total_pengeluaran,
             'total_pemasukan' => $total_pemasukan,
             'total' => $total,
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'user_img' => $user_img
         ]);
     }
 
     public function showDetail($id) {
+        
+
         $transaction = Transaction::find($id);
         return view('transaction.detail', [
             'transaction' => $transaction
@@ -43,7 +48,8 @@ class TransactionController extends Controller
     }
 
     public function showHasil() {
-        $user = User::with('transaction')->find(5);
+        $user = Auth::user();
+    
         $pemasukan = $user->transaction()
             ->where('type', 'pemasukan')
             ->get();
@@ -53,12 +59,16 @@ class TransactionController extends Controller
         $total_pemasukan = $pemasukan->sum('amount');
         $total_pengeluaran = $pengeluaran->sum('amount');
         $total = $total_pemasukan - $total_pengeluaran;
+
         return view('transaction.hasil',[
             'user' => $user
             ,'total_pengeluaran' => $total_pengeluaran
             ,'total_pemasukan' => $total_pemasukan
-            ,'total' => $total
+            ,'total' => $total,
+            
         ]);
+
+        
     }
 
     public function create() {
@@ -151,4 +161,6 @@ class TransactionController extends Controller
         return redirect()->back()->with('success', 'taransaction sudah di perbarui');
     }
 
+
+    
 }
