@@ -9,13 +9,11 @@ const titleModal = document.getElementById('title-modal');
 const btnModal = document.getElementById('btnModal')
 const modalHapus = document.getElementById('modal-hapus');
 const closeHapus = document.getElementById('hapus');
-const btnHapus = document.querySelectorAll('.hapus');
 const pop = document.getElementById('pop');
 const konfirmasiHapus = document.getElementById("konfirmasiHapus");
 const deleteFrom = document.getElementById("deleteFrom");
 const tambahFrom = document.getElementById("fromtambah");
 const formMethod = document.getElementById("formMethod");
-
 
 
 function bar() {
@@ -32,13 +30,51 @@ function bar() {
     });
 }
 
+
 function modalTambah() {
     tambahTransaksi.addEventListener('click', ()=> {
+
+        const jenis = document.getElementById('jenis');
+        const kategori = document.getElementById('kategori');
+
         titleModal.textContent = "tambah transaksi";
         btnModal.textContent = "kirim";
         modalTambahh.style.display = "flex"
         tambahFrom.action = `/transaction/create`;
+
+        jenis.addEventListener("change", function() {
+            const data = jenis.value;
+            console.log(data);
+
+            const kategoriData = {
+            pemasukan : ['Gaji', 'Bonus', 'Hadiah', 'Investasi'],
+            pengeluaran : ['Makan', 'Transportasi', 'Belanja', 'Tagihan']
+            }
+
+            kategori.innerHTML = '<option value="">-- Pilih Kategori --</option>';
+
+            if (data && kategoriData[data]) {
+                kategoriData[data].forEach( function(ket) {
+                    var option = document.createElement("option");
+                    option.value = ket;
+                    option.textContent = ket;
+
+                    kategori.appendChild(option);
+                })
+            }
+
+        })
     })
+
+    close.addEventListener('click', ()=> {
+        modalTambahh.style.display = "none";
+    })
+
+    window.onclick = function(e) {
+        if (e.target === modalTambahh) {
+            modalTambahh.style.display = "none";
+        }
+    }
     
 
     btnedit.forEach(btn => {
@@ -84,9 +120,6 @@ function modalTambah() {
                 formMethod.value = 'PUT';
                 tambahFrom.action = `/transaction/update/${id}`
 
-
-
-
                 
             }
 
@@ -94,37 +127,57 @@ function modalTambah() {
         })
     })
 
+    const btnEditMobile = document.getElementById("btnEditMobile");
+    const tambahContainer = document.querySelector(".tambah-container");
 
+    btnEditMobile.addEventListener("click", async function() {
+        console.log("ini media edit");
+        modalTambahh.style.display = "flex"
+        tambahContainer.style.width = "90%"
+        const id = this.getAttribute("data-id")
+        console.log(id);
 
-    close.addEventListener('click', ()=> {
-        modalTambahh.style.display = "none";
+        const res = await fetch(`/transaction/${id}`);
+            const data = await res.json();
+            console.log(data);
+            jenis.value = data.type
+            //kategori.value = data.kategori
+            jumlah.value = data.amount
+            tanggal.value = data.date
+
+            const kategoriData = {
+            pemasukan : ['Gaji', 'Bonus', 'Hadiah', 'Investasi'],
+            pengeluaran : ['Makan', 'Transportasi', 'Belanja', 'Tagihan']
+            }
+
+            // let jenis = this.value;
+            // console.log(jenis);
+            ketegori.innerHTML = '<option value="">-- Pilih Kategori --</option>';
+
+            if ( data.type && kategoriData[data.type]) {
+                kategoriData[data.type].forEach(function(ket, index) {
+                    let option = document.createElement("option");
+                    option.value = ket.toLowerCase();
+                    option.textContent = ket;
+                    ketegori.appendChild(option);
+                })
+
+                const dataKategori = ketegori.value = data.kategori;
+
+                console.log(dataKategori);
+                let id = data.id;
+                formMethod.value = 'PUT';
+                tambahFrom.action = `/transaction/update/${id}`
+            }
+
     })
 
-    window.onclick = function(e) {
-        if (e.target === modalTambahh) {
-            modalTambahh.style.display = "none";
-        }
-    }
+
+
+
+    
 };
 
-function hapus() {
-    btnHapus.forEach(b => {
-        b.addEventListener('click', ()=> {
-            modalHapus.style.display = "flex";
-            const id = b.getAttribute('data-id');
-            console.log(id)
-            deleteFrom.action = `/transaction/delete/${id}`;
-        })
-    })
-
-
-    window.addEventListener('click', function(e) {
-        if (e.target === modalHapus) {
-            modalHapus.style.display = "none";
-        }
-    })
-
-};
 
 
 
@@ -166,15 +219,14 @@ function hapus() {
                 })
             }
         })
-    }
+    };
 
     
-console.log("Popup tampil!");
 bar();
 modalTambah();
 hapus();
 tambahproduk();
-
+tambahProdukMobile();
 
 
 

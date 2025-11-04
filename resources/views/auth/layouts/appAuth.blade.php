@@ -10,7 +10,7 @@
 
 </head>
 <body>
-@include('layouts.navbar')
+
 @include('pop.pop')
 
 

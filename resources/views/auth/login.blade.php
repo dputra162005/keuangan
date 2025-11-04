@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('auth.layouts.appAuth')
 @section('content')
-<section>
+
+<section class="">
         <form action="{{ url('/login') }}" method="POST">
             @csrf
         <div class="modal-register">

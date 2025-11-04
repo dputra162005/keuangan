@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('modal.modal_tambah')
 
 @section('content')
 <section class="detail-mobile">
@@ -11,6 +12,7 @@
                 <p><strong>Tanggal:</strong> {{$transaction->date}}</p>
             </div>
             <a href="{{ url('/transaction') }}" class="btn-back">Kembali</a>
+            <a class="btn-back" id="btnEditMobile" data-id="{{ $transaction->id }}" >edit</a>
         </div>
     </section>
 @endsection
