@@ -3,30 +3,25 @@
 <section class="tambah-mobile">
     <div class="form-tambah">
         <h2>Tambah Transaksi</h2>
-        <form  action="{{ url('/transaction/create') }}" method="POST" >
+        <form  action="{{ route('createTransaction.post') }}" method="POST" >
             @csrf
             <div class="masukan-data">
                 <label for="jenis">Jenis Transaksi</label>
-                <select name="jenis" id="jenis">
+                <select name="type" id="jenis-mobile">
                     <option value="pemasukan">Pemasukan</option>
                     <option value="pengeluaran">Pengeluaran</option>
                 </select>
 
-                <label for="kategori">Kategori</label>
-                <select name="kategori" id="kategori">
-                    <option value="makanan">Makanan</option>
-                    <option value="transportasi">Transportasi</option>
-                    <option value="hiburan">Hiburan</option>
-                    <option value="belanja">Belanja</option>
-                    <option value="tagihan">Tagihan</option>
-                    <option value="lainnya">Lainnya</option>
+                <label for="kategori-mobile">Kategori</label>
+                <select name="kategori" id="kategori-mobile">
+                    
                 </select>
 
                 <label for="jumlah">Jumlah</label>
-                <input type="number" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah">
+                <input type="number" id="jumlah" name="amount" placeholder="Masukkan Jumlah">
 
                 <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal">
+                <input type="date" id="tanggal" name="date">
 
                 <button type="submit" class="btn-submit">Tambah</button>
             </div>

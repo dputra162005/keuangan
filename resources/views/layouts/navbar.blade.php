@@ -21,7 +21,7 @@
 <nav class="mobile-nav" id="mobile-nav">
     <ul class="nav-links-mobile">
     <li><a href="{{ url('/transaction') }}"><i class="fa-solid fa-house"></i></a></li>
-    <li><a href="{{ url('/transaction/create') }}"><i class="fa-solid fa-plus"></i></a></li>
+    <li><a id="tambah-mobilee" href="{{ url('/transaction/create') }}"><i class="fa-solid fa-plus"></i></a></li>
     <li><a href="{{ url('/transaction/hasil') }}" ><i class="fa-solid fa-calculator"></i></a></li>  
     </ul>
 </nav>

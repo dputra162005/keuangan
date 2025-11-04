@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.appAuth')
 @section('content')
 <section>
     <div class="modal-register">

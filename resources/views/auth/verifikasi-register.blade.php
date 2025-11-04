@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('auth.layouts.appAuth')
 @section('content')
 <section>
         <form action="{{ url('/verfikasi-register') }}" method="POST">

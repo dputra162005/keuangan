@@ -120,7 +120,7 @@ class TransactionController extends Controller
         'kategori' => $request->kategori
         ]);
 
-        return redirect()->back()->with('success', 'taransaction sudah di tambahkan');  
+        return redirect()->route('transaction')->with('success', 'taransaction sudah di tambahkan');  
     }
 
     public function deleteTransaction($id) {
